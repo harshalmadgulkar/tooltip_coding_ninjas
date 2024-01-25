@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import TooltipContainer from "./TooltipContainer";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      position: 0,
+    };
+  }
+
+  handleOptions=(e)=>{
+    console.log(e);
+    this.setState({
+      position:e
+    })
+  }
+
+  render() {
+    return (
+      <>
+        <div className={"options"}>
+          <select id="positions" onChange={(e)=>this.handleOptions(e.target.value)}>
+            <option value="0">Left</option>
+            <option value="1">Bottom</option>
+            <option value="2">Right</option>
+            <option value="3">Top</option>
+          </select>
+        </div>
+        <TooltipContainer position={this.state.position} />
+      </>
+    );
+  }
 }
 
 export default App;
